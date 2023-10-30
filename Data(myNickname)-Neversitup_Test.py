@@ -2,8 +2,44 @@ import inquirer
 
 
 def main():
-    CountTheSmileyFaces()
-    main()
+    choices=[
+        'Question 1 : Permutations',
+        'Question 2 : Find the odd int',
+        'Question 3 : Count the smiley faces! XD'
+    ]
+    questions = [
+        inquirer.List('Question',
+            message="What part do you want to access?",
+            choices=[
+                'Question 1 : Permutations',
+                'Question 2 : Find the odd int',
+                'Question 3 : Count the smiley faces! XD',
+            ],
+        ),
+    ]
+    answers = inquirer.prompt(questions)
+    if (answers["Question"] == choices[0]):
+        # print("1")
+        Permutations()
+    elif (answers["Question"] == choices[1]):
+        # print("2")
+        FindTheOddInt()
+    elif (answers["Question"] == choices[2]):
+        # print("3")
+        CountTheSmileyFaces()
+    print ("End of "+answers["Question"]+"\n")
+    print ("#-----------------------------#\n")
+    confirm = {
+        inquirer.Confirm('confirmed',
+            message="Do you want to end all process?",
+            default=True
+        ),
+    }
+    confirmation = inquirer.prompt(confirm)
+    if confirmation["confirmed"]:
+        return
+    else:
+        main()
 
 def test():
     print("Mountain")
@@ -20,7 +56,7 @@ def test():
     answers = inquirer.prompt(questions)
     print (answers["Question"])
 
-def Permutations(temp_input):
+def Permutations():
     print()
     print("Question 1 : Permutations")
     temp_input = (str(input("Input your Text : "))).strip()
@@ -46,7 +82,7 @@ def PermutationsAssist(input_str):
 def FindTheOddInt():
     print()
     print("Question 2 : Find the odd int ")
-    print("input your odds set (ex. 7 or 2,2,2,3,3 )")
+    print("input your odds set (ex. 2,2,2,3,3 or [0,1,0,1,0])")
     print("\t concern about \",\"")
     temp_input = str(input(" : "))
     temp_input,ans_num,ans_count = FindTheOddIntAssist(temp_input)
